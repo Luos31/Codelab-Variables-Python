@@ -1,0 +1,61 @@
+import os
+
+class Laberinto:
+    def __init__(self, nombre_jugador):
+        self.nombre_jugador = nombre_jugador
+        self.mapa = [
+            "##########",
+            "#P.......#",
+            "#.######.#",
+            "#........#",
+            "#.######.#",
+            "#.######.#",
+            "#........#",
+            "##########"
+        ]
+        self.posicion_jugador = (1, 1)
+
+    def imprimir_laberinto(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        for fila in self.mapa:
+            print(fila)
+
+    def mover_jugador(self, direccion):
+        x, y = self.posicion_jugador
+        if direccion == "arriba" and self.mapa[x - 1][y] == ".":
+            self.mapa[x][y] = "."
+            self.mapa[x - 1][y] = "P"
+            self.posicion_jugador = (x - 1, y)
+        elif direccion == "abajo" and self.mapa[x + 1][y] == ".":
+            self.mapa[x][y] = "."
+            self.mapa[x + 1][y] = "P"
+            self.posicion_jugador = (x + 1, y)
+        elif direccion == "izquierda" and self.mapa[x][y - 1] == ".":
+            self.mapa[x][y] = "."
+            self.mapa[x][y - 1] = "P"
+            self.posicion_jugador = (x, y - 1)
+        elif direccion == "derecha" and self.mapa[x][y + 1] == ".":
+            self.mapa[x][y] = "."
+            self.mapa[x][y + 1] = "P"
+            self.posicion_jugador = (x, y + 1)
+
+    def jugar(self):
+        print(f"Bienvenido al Laberinto del Mal, {self.nombre_jugador}!")
+        print("Instrucciones: Usa las teclas ↑ ↓ ← → para moverte por el laberinto.")
+        while True:
+            self.imprimir_laberinto()
+            direccion = input("Ingrese la dirección (arriba, abajo, izquierda, derecha) o 'salir' para terminar: ")
+            if direccion == "salir":
+                print("¡Hasta luego!")
+                break
+            self.mover_jugador(direccion)
+
+
+def main():
+    nombre_jugador = input("¡Bienvenido al juego del Laberinto del Mal! Por favor, introduce tu nombre: ")
+    laberinto = Laberinto(nombre_jugador)
+    laberinto.jugar()
+
+
+if __name__ == "__main__":
+    main()
