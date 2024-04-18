@@ -1,0 +1,12 @@
+cadena = "¡Hola, Python!"
+entero = 100
+flotante = 6.28
+booleano = False
+
+resultado_concatenacion = cadena + str(entero) + str(flotante) + str(booleano)
+
+n = entero
+suma_pares = n * (n + 1)
+
+print("Cadena concatenada:", resultado_concatenacion)
+print("Suma de los primeros", n, "números pares:", suma_pares)
